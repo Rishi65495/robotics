@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robotics – MCA Semester Exam Notes</title>
+<style>
+  body { font-family: Georgia, serif; font-size: 15px; line-height: 1.8; color: #1a1a1a; max-width: 900px; margin: 0 auto; padding: 24px 32px 60px; background: #fff; }
+  h1 { font-size: 26px; font-weight: 700; color: #1a1a1a; border-bottom: 3px solid #2c5282; padding-bottom: 10px; margin-top: 36px; }
+  h2 { font-size: 20px; font-weight: 700; color: #2c5282; border-left: 5px solid #2c5282; padding-left: 12px; margin-top: 32px; }
+  h3 { font-size: 17px; font-weight: 700; color: #2d3748; margin-top: 24px; }
+  h4 { font-size: 15px; font-weight: 700; color: #4a5568; margin-top: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0 8px 24px; }
+  li { margin-bottom: 5px; }
+  .analogy { background: #ebf8ff; border-left: 4px solid #3182ce; padding: 12px 16px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .analogy strong { color: #2b6cb0; }
+  .example { background: #f0fff4; border-left: 4px solid #38a169; padding: 12px 16px; margin: 14px 0; border-radius: 0 6px 6px 0; }
+  .example strong { color: #276749; }
+  .keypoint { background: #fffaf0; border: 1px solid #ed8936; padding: 12px 16px; margin: 14px 0; border-radius: 6px; }
+  .keypoint strong { color: #c05621; }
+  .formula { background: #f7fafc; border: 1px solid #cbd5e0; padding: 10px 16px; margin: 12px 0; border-radius: 6px; font-family: monospace; font-size: 14px; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: #2c5282; color: #fff; padding: 9px 12px; text-align: left; }
+  td { border: 1px solid #cbd5e0; padding: 8px 12px; }
+  tr:nth-child(even) td { background: #f7fafc; }
+  .toc { background: #f7fafc; border: 1px solid #cbd5e0; padding: 16px 24px; border-radius: 8px; margin-bottom: 32px; }
+  .toc h2 { color: #2c5282; border: none; padding: 0; font-size: 17px; margin: 0 0 10px; }
+  .toc ol { margin-left: 20px; }
+  .toc li { margin: 4px 0; }
+  .toc a { color: #2c5282; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .unit-header { background: linear-gradient(135deg, #2c5282, #2b6cb0); color: #fff; padding: 14px 20px; border-radius: 8px; margin: 36px 0 20px; }
+  .unit-header h1 { color: #fff; border: none; padding: 0; margin: 0; font-size: 22px; }
+  .unit-header p { margin: 4px 0 0; font-size: 13px; color: #bee3f8; }
+  .comparison { display: flex; gap: 16px; margin: 14px 0; }
+  .comp-box { flex: 1; padding: 12px; border-radius: 6px; }
+  .comp-open { background: #fff5f5; border: 1px solid #feb2b2; }
+  .comp-closed { background: #f0fff4; border: 1px solid #9ae6b4; }
+  .comp-box h4 { margin: 0 0 8px; font-size: 14px; }
+  .highlight { background: #fefcbf; padding: 2px 4px; border-radius: 3px; font-weight: 600; }
+  hr { border: none; border-top: 2px solid #e2e8f0; margin: 32px 0; }
+  .footer { text-align: center; font-size: 12px; color: #718096; margin-top: 60px; padding-top: 20px; border-top: 1px solid #e2e8f0; }
+</style>
+</head>
+<body>
+
+<h1 style="text-align:center; border:none; font-size:28px; margin-bottom:4px;">ROBOTICS — MCA SEMESTER EXAM NOTES</h1>
+<p style="text-align:center; color:#718096; margin-bottom:28px;">Units 3, 4 &amp; 5 | Complete Notes with Examples &amp; Analogies</p>
+
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol>
+    <li><a href="#unit3">Unit 3: Introduction to Robotics</a>
+      <ul>
+        <li><a href="#classification">Classification of Robots</a></li>
+        <li><a href="#kinematics">Robot Manipulator Kinematics</a></li>
+        <li><a href="#dof">Degrees of Freedom &amp; Joints</a></li>
+        <li><a href="#arm-wrist">Arm &amp; Wrist Control</a></li>
+        <li><a href="#trajectory">Trajectory Generation &amp; Control</a></li>
+        <li><a href="#control-systems">Linear &amp; Non-Linear Control</a></li>
+        <li><a href="#robot-vision">Robot Vision</a></li>
+      </ul>
+    </li>
+    <li><a href="#unit4">Unit 4: Robot Motion</a>
+      <ul>
+        <li><a href="#translation-rotation">Translational &amp; Rotational Motion</a></li>
+        <li><a href="#lagrangian">Lagrangian Analysis</a></li>
+        <li><a href="#actuators">Control of Actuators</a></li>
+        <li><a href="#sensors">Robot Sensory Devices</a></li>
+      </ul>
+    </li>
+    <li><a href="#unit5">Unit 5: Computer Vision &amp; Robot Programming</a>
+      <ul>
+        <li><a href="#imaging">Imaging Components</a></li>
+        <li><a href="#object-recognition">Object Recognition</a></li>
+        <li><a href="#programming">Robot Programming</a></li>
+        <li><a href="#design">Robot Design &amp; Process Specifications</a></li>
+      </ul>
+    </li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<div class="unit-header" id="unit3">
+  <h1>UNIT 3: Introduction to Robotics</h1>
+  <p>Classification · Kinematics · Arm &amp; Wrist Control · Trajectory Generation · Linear &amp; Non-Linear Control · Robot Vision</p>
+</div>
+
+<h2 id="classification">1. Classification of Robots</h2>
+
+<h3>Definitions (Know all three for exams)</h3>
+<ul>
+  <li><strong>British Definition:</strong> A reprogrammable device with multiple DOF that can manipulate and transport parts for manufacturing.</li>
+  <li><strong>ISO Definition:</strong> An automatic, servo-controlled, freely programmable, multipurpose manipulator for handling work pieces, tools, or special devices.</li>
+  <li><strong>RIA (American) Definition:</strong> A reprogrammable, multifunctional manipulator designed to move material through variable programmed motions.</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Think of a robot like an advanced washing machine. A normal washing machine runs a fixed program. A robot is like one that can be completely reprogrammed — today it washes clothes, tomorrow it can be taught to mix paint — and it can physically reach out to handle objects.
+</div>
+
+<h3>The 4 Ds — Preferred Areas for Robots</h3>
+<table>
+  <tr><th>D</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td><strong>Dull</strong></td><td>Repetitive, boring tasks</td><td>Assembly line bolt tightening, warehouse sorting</td></tr>
+  <tr><td><strong>Dear</strong></td><td>Cost-saving in the long run</td><td>Construction monitoring, precision manufacturing</td></tr>
+  <tr><td><strong>Dirty</strong></td><td>Unsanitary/hazardous environments</td><td>Sewage cleaning (ETP), toxic waste handling</td></tr>
+  <tr><td><strong>Dangerous</strong></td><td>High-risk scenarios</td><td>Bomb disposal, mine exploration, UGV in war zones</td></tr>
+</table>
+
+<h3>Types of Robots (with Real-World Examples)</h3>
+<ul>
+  <li><strong>Humanoids:</strong> Sophia (social robot), Atlas by Boston Dynamics</li>
+  <li><strong>Legged Robots:</strong> Spot (Boston Dynamics), CyberDog (Xiaomi)</li>
+  <li><strong>Self-Driving Cars:</strong> Google Waymo, Tesla Autopilot</li>
+  <li><strong>Military Robots:</strong> Daksh by DRDO (India), MQ-9 Reaper (USA drone)</li>
+  <li><strong>Bio-Inspired (Bionic):</strong> Snake Robot, Kangaroo by Festo</li>
+  <li><strong>Collaborative Robots (Cobots):</strong> Baxter Robot — works alongside humans safely</li>
+  <li><strong>Aerial Robots:</strong> Drones, Rustam by DRDO</li>
+  <li><strong>Medical Robots:</strong> Surgical robots (NEURA Robotics)</li>
+</ul>
+
+<h3>Asimov's Laws of Robotics (Common Exam Question)</h3>
+<ol>
+  <li>A robot may <strong>not injure a human</strong> or allow one to come to harm through inaction.</li>
+  <li>A robot must <strong>obey orders</strong> given by humans, except where they conflict with Law 1.</li>
+  <li>A robot must <strong>protect its own existence</strong>, except where this conflicts with Laws 1 or 2.</li>
+  <li><strong>Zeroth Law (added later):</strong> A robot may not harm humanity as a whole, or allow it to come to harm — overrides all others.</li>
+</ol>
+
+<div class="example">
+  <strong>Exam Tip:</strong> These laws were introduced in Asimov's 1942 short story "Runaround." The Zeroth Law was added later as a higher priority law. Remember: the zeroth law protects humanity as a <em>whole</em>, not just individuals.
+</div>
+
+<hr>
+
+<h2 id="kinematics">2. Robot Manipulator Kinematics</h2>
+
+<h3>Basic Definitions</h3>
+<ul>
+  <li><strong>Links:</strong> Rigid members of a robot that form its structure. Rigid = distance between any two points on a link never changes. Think of bones in your arm.</li>
+  <li><strong>Joints:</strong> Movable connections between links (also called axes). Like your elbow or knee.</li>
+  <li><strong>Actuators:</strong> Motors/devices (electric, hydraulic, pneumatic) that apply force/torque to joints to cause movement.</li>
+  <li><strong>End-Effectors:</strong> The "hand" at the end of the robot arm. Can be a gripper, welding gun, spray painter, etc.</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Think of the robot arm as your arm. Links = bones (humerus, radius). Joints = shoulder, elbow, wrist. Actuator = your muscles. End-effector = your hand/tool.
+</div>
+
+<h3>Configuration Space (C-Space)</h3>
+<ul>
+  <li><strong>Configuration:</strong> The position of all links/points of a rigid body. Needs minimum number of real-valued coordinates.</li>
+  <li><strong>DOF (Degrees of Freedom):</strong> Minimum number of coordinates needed to fully describe a body's position.</li>
+  <li>In <strong>2D space</strong>: DOF = 3 (x translation, y translation, 1 rotation about z-axis)</li>
+  <li>In <strong>3D space</strong>: DOF = 6 (x, y, z translations + rotation about x, y, z axes)</li>
+</ul>
+
+<div class="formula">
+DOF = (Dimension of C-Space) − (Number of Independent Holonomic Constraints)
+</div>
+
+<h3>Types of Constraints</h3>
+<table>
+  <tr><th>Type</th><th>Definition</th><th>Example</th></tr>
+  <tr><td><strong>Holonomic</strong></td><td>Expressible algebraically in coordinates. Restrict motion to lower-dimensional subspace.</td><td>Fixed joints, hinges, sliding connections</td></tr>
+  <tr><td><strong>Non-Holonomic</strong></td><td>Cannot be expressed algebraically; restrict velocities/accelerations, not just positions.</td><td>Rolling without slipping (car wheel), friction interactions</td></tr>
+</table>
+
+<div class="analogy">
+  <strong>Analogy for Non-Holonomic:</strong> A car can only go forward/backward in the direction it's facing. It can't slide sideways instantly. The constraint is on the direction of velocity — that's non-holonomic.
+</div>
+
+<h3>Constraints: Independent vs. Redundant</h3>
+<ul>
+  <li><strong>Independent constraints:</strong> Each one actually restricts new motion. Count these.</li>
+  <li><strong>Redundant constraints:</strong> Already blocked by another constraint. Do NOT count these.</li>
+</ul>
+
+<hr>
+
+<h2 id="dof">3. Robot Joints — Types and DOF</h2>
+
+<h3>Six Fundamental Joint Types</h3>
+
+<table>
+  <tr>
+    <th>Joint</th><th>Symbol</th><th>Motion Type</th><th>DOF</th><th>Planar Constraints</th><th>Spatial Constraints</th><th>Analogy</th>
+  </tr>
+  <tr>
+    <td><strong>Revolute (R)</strong></td><td>R</td><td>Rotation about 1 axis</td><td>1</td><td>2 (translational)</td><td>5 (3 trans + 2 rot)</td><td>Hinge, door, elbow</td>
+  </tr>
+  <tr>
+    <td><strong>Prismatic (P)</strong></td><td>P</td><td>Linear sliding along 1 axis</td><td>1</td><td>2 (1 trans + 1 rot)</td><td>5 (2 trans + 3 rot)</td><td>Piston, drawer</td>
+  </tr>
+  <tr>
+    <td><strong>Helical (H)</strong></td><td>H</td><td>Simultaneous rotation + translation (screw)</td><td>1</td><td>N/A (spatial only)</td><td>5</td><td>Bolt being tightened</td>
+  </tr>
+  <tr>
+    <td><strong>Cylindrical (C)</strong></td><td>C</td><td>Rotation + linear (independent) about 1 axis</td><td>2</td><td>N/A (spatial only)</td><td>4 (2 trans + 2 rot)</td><td>Office chair (swivel + height)</td>
+  </tr>
+  <tr>
+    <td><strong>Universal (U)</strong></td><td>U</td><td>Rotation about 2 perpendicular axes (Cardan)</td><td>2</td><td>N/A (spatial only)</td><td>4 (3 trans + 1 rot)</td><td>Steering column joint</td>
+  </tr>
+  <tr>
+    <td><strong>Spherical (S)</strong></td><td>S</td><td>Rotation about multiple axes simultaneously</td><td>3</td><td>N/A (spatial only)</td><td>3 (3 trans)</td><td>Shoulder joint, ball-and-socket</td>
+  </tr>
+</table>
+
+<div class="keypoint">
+  <strong>Key Memory Trick:</strong> Higher DOF joint = fewer constraints imposed. Revolute/Prismatic = most constraints (5 spatial). Spherical = fewest constraints (3 spatial). Cylindrical and Universal sit in between (4 spatial).
+</div>
+
+<h3>Industrial Robot Joint Types (5 Types Used in Practice)</h3>
+<ol>
+  <li><strong>Linear joint (L):</strong> Translational sliding, links parallel to each other.</li>
+  <li><strong>Orthogonal joint (U):</strong> Translational sliding, links perpendicular to each other.</li>
+  <li><strong>Rotational joint (R):</strong> Rotation, axis perpendicular to both link axes.</li>
+  <li><strong>Twisting joint (T):</strong> Rotation, axis parallel to both link axes.</li>
+  <li><strong>Revolving joint (V):</strong> Input link axis parallel to rotation axis; output link perpendicular to rotation axis.</li>
+</ol>
+
+<h3>Robot Anatomy — Joint-Link Numbering</h3>
+<ul>
+  <li>Base + its connection to first joint = <strong>Link 0</strong></li>
+  <li>First joint = <strong>Joint 1</strong>; its output = <strong>Link 1</strong></li>
+  <li>Link 1 is simultaneously the output of Joint 1 and the input of Joint 2.</li>
+  <li>This chain continues to the end effector.</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Like floors in a building. Ground floor (Link 0) → Door 1 (Joint 1) → Room 1 (Link 1) → Door 2 (Joint 2) → Room 2 (Link 2), and so on.
+</div>
+
+<hr>
+
+<h2 id="arm-wrist">4. Arm Control &amp; Wrist Control</h2>
+
+<h3>Body-and-Arm Configurations (4 Main Types)</h3>
+
+<h4>A) Polar / Spherical Configuration (RRP)</h4>
+<ul>
+  <li>Joint notation: TRL (Twisting, Rotating, Linear)</li>
+  <li>Structure: Rotating base + revolute joint + prismatic (extending) arm</li>
+  <li>Work volume: Partial sphere</li>
+  <li><strong>Advantage:</strong> Long horizontal reach; can reach floor-level objects</li>
+  <li><strong>Disadvantage:</strong> Low vertical reach, complex construction, accuracy drops with radial extension</li>
+  <li><strong>Examples:</strong> Unimate 2000, MAKER 110; used in machining, spray painting</li>
+</ul>
+
+<h4>B) Cylindrical Configuration (RPP)</h4>
+<ul>
+  <li>Joint notation: TLO (Twisting, Linear, Orthogonal)</li>
+  <li>Structure: Rotating column + vertical slide + horizontal extend arm</li>
+  <li>Work volume: Approximates a cylinder</li>
+  <li><strong>Advantage:</strong> Good mechanical stiffness, increased rigidity, high payload</li>
+  <li><strong>Disadvantage:</strong> Less work volume, accuracy drops as horizontal stroke increases</li>
+  <li><strong>Example:</strong> GMF model M-1A; used in machine loading, narrow horizontal access</li>
+</ul>
+
+<h4>C) Cartesian / Rectangular Configuration (PPP)</h4>
+<ul>
+  <li>Joint notation: LOO (Linear, Orthogonal, Orthogonal)</li>
+  <li>Structure: Three perpendicular prismatic (linear) joints</li>
+  <li>Work volume: Cuboid (box-shaped)</li>
+  <li><strong>Advantage:</strong> Highest precision, simple programming, lower cost, high payloads</li>
+  <li><strong>Disadvantage:</strong> Limited flexibility, reduced work envelope, low dexterity</li>
+  <li><strong>Example:</strong> IBM RS-1; used to lift/move heavy loads</li>
+</ul>
+
+<h4>D) Jointed Arm / Articulated Configuration (RRR)</h4>
+<ul>
+  <li>Joint notation: TRR (Twisting, Rotating, Rotating)</li>
+  <li>Structure: Mimics human arm — waist (T), shoulder (R), elbow (R)</li>
+  <li>Work volume: Spherical — largest work envelope</li>
+  <li><strong>Advantage:</strong> Maximum flexibility, huge work volume, quick operation</li>
+  <li><strong>Disadvantage:</strong> Very expensive, complex operating procedures, many components</li>
+  <li><strong>Example:</strong> SCARA robot; used for arc welding, spray coating</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy for RRR:</strong> If Cartesian robots are like elevators (strictly linear), articulated robots are like a human arm — they can reach around corners, under tables, and behind objects with ease.
+</div>
+
+<h3>SCARA Robot (Special Case)</h3>
+<ul>
+  <li>Full Name: Selective Compliance Assembly Robot Arm</li>
+  <li>Shoulder and elbow axes are <strong>vertical</strong> (unlike standard jointed arm)</li>
+  <li>Very rigid vertically, but compliant (flexible) horizontally</li>
+  <li>Ideal for <strong>insertion-type assembly</strong> — no separate wrist needed</li>
+</ul>
+
+<h3>Robot Wrist — Three DOF</h3>
+<ul>
+  <li>Notation: RRT</li>
+  <li><strong>Roll (R):</strong> Rotation of wrist about the arm axis</li>
+  <li><strong>Pitch (P):</strong> Up or down rotation (like nodding head)</li>
+  <li><strong>Yaw (Y):</strong> Right or left rotation (like shaking head "no")</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy:</strong> The wrist in a robot is exactly like your wrist — it orients the hand/tool in space. The arm+body (shoulder/elbow) positions where you reach; the wrist decides which way the hand faces.
+</div>
+
+<h3>Six DOF Robot</h3>
+<p>A full 6-DOF robot = 3 body/arm movements + 3 wrist movements. This allows the end effector to reach any position in its work volume with any orientation — mimicking the full range of the human arm.</p>
+
+<h3>Precision of Movement — Three Metrics</h3>
+<table>
+  <tr><th>Term</th><th>Definition</th><th>Key Formula / Note</th></tr>
+  <tr>
+    <td><strong>Spatial Resolution</strong></td>
+    <td>Smallest increment of motion at wrist that can be controlled</td>
+    <td>Control Resolution = Range / Control Increments</td>
+  </tr>
+  <tr>
+    <td><strong>Accuracy</strong></td>
+    <td>Ability to reach a specified target point</td>
+    <td>= ½ distance between two adjacent resolution points. Hard to control — manufacturers rarely specify it.</td>
+  </tr>
+  <tr>
+    <td><strong>Repeatability</strong></td>
+    <td>Ability to return to a previously visited point consistently</td>
+    <td>Repeatability errors are random. Larger robots have less precise repeatability. Non-servo robots can achieve ±0.01 inch.</td>
+  </tr>
+</table>
+
+<div class="keypoint">
+  <strong>Key Relationship:</strong> Resolution → Accuracy → Repeatability. All three are affected by mechanical inaccuracies. Repeatability is generally better than accuracy for most industrial robots.
+</div>
+
+<h3>End Effectors — Two Types</h3>
+<ol>
+  <li><strong>Grippers:</strong> Grasp and manipulate objects
+    <ul>
+      <li>Mechanical grippers (2-finger, 3-finger)</li>
+      <li>Suction/vacuum cups</li>
+      <li>Magnetized grippers</li>
+      <li>Multi-fingered grippers (human-hand-like)</li>
+    </ul>
+  </li>
+  <li><strong>Tools:</strong> Process-specific tools attached to wrist
+    <ul>
+      <li>Spot welding gun, arc welding tools</li>
+      <li>Spray painting gun</li>
+      <li>Drilling spindle, grinders, wire brushes</li>
+      <li>Hooks, scoops (for fluids), heating torches</li>
+    </ul>
+  </li>
+</ol>
+
+<hr>
+
+<h2 id="trajectory">5. Trajectory Generation &amp; Control</h2>
+
+<h3>Coordinate Systems</h3>
+<table>
+  <tr><th>System</th><th>Also Called</th><th>Definition</th></tr>
+  <tr><td><strong>World Coordinate System</strong></td><td>Ground Frame</td><td>Origin and axes defined relative to the robot base. End-of-arm moves parallel to world axes.</td></tr>
+  <tr><td><strong>Tool Coordinate System</strong></td><td>Body Frame</td><td>Axis system defined relative to orientation of wrist faceplate (where end effector attaches). Moves relative to tool orientation.</td></tr>
+</table>
+
+<h3>Types of Robot Control Systems (4 Types)</h3>
+<ol>
+  <li><strong>Limited Sequence Control:</strong> Simplest. Uses mechanical stops at end positions. Pick-and-place only. No feedback between endpoints.</li>
+  <li><strong>Playback with Point-to-Point Control:</strong> Records sequence of discrete points, then replays. Controller computes path between points.</li>
+  <li><strong>Playback with Continuous Path Control:</strong> Records smooth path through space. Greater memory needed. Used for spray painting, welding.</li>
+  <li><strong>Intelligent Control:</strong> Responds to sensor inputs, makes decisions, communicates with humans. Highest level.</li>
+</ol>
+
+<h3>Motion Control — Two Key Aspects</h3>
+<ul>
+  <li><strong>Path Control:</strong> How accurately the robot traces a given path. Critical for gluing, painting, welding.</li>
+  <li><strong>Velocity Control:</strong> How well velocity is maintained. Critical for gluing and painting to ensure uniform coating thickness and stable process parameters.</li>
+</ul>
+
+<h3>Point-to-Point Control (PTP)</h3>
+<ul>
+  <li>Only end points are programmed; path between them computed by controller</li>
+  <li>User can control velocity; may permit linear or piecewise linear motion</li>
+  <li>Feedback control verifies each joint reaches desired location</li>
+  <li>Loads up to 500 lb</li>
+  <li><strong>Applications:</strong> Pick-and-place, palletizing, machine loading, spray painting, arc welding</li>
+</ul>
+
+<h3>Continuous Path Control (CP)</h3>
+<ul>
+  <li>Robot can stop at <em>any</em> point along the controlled path</li>
+  <li>All path points must be stored in robot's memory</li>
+  <li>Programmer manually moves the arm through desired path — controller records many individual points (teach-in method)</li>
+  <li><strong>Applications:</strong> Straight-line motion, spray painting, finishing, gluing, arc welding</li>
+</ul>
+
+<h3>Controlled-Path Control</h3>
+<ul>
+  <li>Control equipment can generate paths of different geometry: straight lines, circles, interpolated curves — with high accuracy</li>
+  <li>Only start/finish points + path definition function stored in memory</li>
+  <li>All controlled-path robots have servo capability to correct their path</li>
+  <li><strong>Applications:</strong> Precision welding, high-accuracy spray painting, complex gluing, contour finishing</li>
+</ul>
+
+<hr>
+
+<h2 id="control-systems">6. Open Loop vs. Closed Loop Control</h2>
+
+<div class="comparison">
+  <div class="comp-box comp-open">
+    <h4>Open Loop Control</h4>
+    <ul>
+      <li>Output does <strong>NOT</strong> affect control action</li>
+      <li>No feedback mechanism</li>
+      <li>Simple, cheap, fast</li>
+      <li>Low accuracy, less reliable</li>
+      <li>Low maintenance</li>
+      <li><strong>Example:</strong> Clothes dryer with a timer — stops after set time whether clothes are dry or not</li>
+    </ul>
+  </div>
+  <div class="comp-box comp-closed">
+    <h4>Closed Loop Control</h4>
+    <ul>
+      <li>Output <strong>feeds back</strong> and influences control action</li>
+      <li>Generates error signal = (desired output − actual output)</li>
+      <li>Accurate, reliable, expensive</li>
+      <li>Requires high maintenance</li>
+      <li><strong>Example:</strong> Air conditioner — thermostat compares room temp to set temp and adjusts compressor</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Non-Servo vs. Servo Control</h3>
+<table>
+  <tr><th>Feature</th><th>Non-Servo (Bang-Bang)</th><th>Servo Control</th></tr>
+  <tr><td>Method</td><td>Mechanical stops at each joint</td><td>Closed-loop feedback for each joint</td></tr>
+  <tr><td>Also called</td><td>End-point robot, Limited sequence robot</td><td>—</td></tr>
+  <tr><td>Control</td><td>Only end points known; no intermediate control</td><td>Position, velocity, other variables monitored</td></tr>
+  <tr><td>Repeatability</td><td>Up to 0.01 inch</td><td>Varies by implementation</td></tr>
+  <tr><td>Cost</td><td>Low cost, easy to maintain</td><td>More expensive</td></tr>
+  <tr><td>Drives</td><td>Typically hydraulic/pneumatic</td><td>PTP or CP-based</td></tr>
+  <tr><td>Flexibility</td><td>Limited flexibility</td><td>High flexibility</td></tr>
+</table>
+
+<div class="analogy">
+  <strong>Analogy for Non-Servo:</strong> Like a light switch — only ON or OFF, no dimming. Like a servo: like a dimmer switch — you can precisely set any brightness level and it holds there.
+</div>
+
+<h3>Automation Types</h3>
+<table>
+  <tr><th>Type</th><th>Also Called</th><th>Description</th><th>Advantages</th><th>Disadvantages</th></tr>
+  <tr>
+    <td><strong>Fixed Automation</strong></td>
+    <td>Hard Automation</td>
+    <td>Special-purpose equipment for fixed sequence of operations. Difficult to change product design.</td>
+    <td>Low unit cost; high production rate; automated material handling</td>
+    <td>High initial investment; inflexible to product changes</td>
+  </tr>
+  <tr>
+    <td><strong>Programmable Automation</strong></td>
+    <td>Soft Automation</td>
+    <td>Production equipment that can change its operation sequence via a program. Example: CNC machines, PLCs, industrial robots</td>
+    <td>Flexible for design variations; suitable for batch production</td>
+    <td>High investment; lower production rate than fixed automation</td>
+  </tr>
+  <tr>
+    <td><strong>Flexible Automation</strong></td>
+    <td>Soft Automation</td>
+    <td>Extension of programmable. No time lost for changeovers between product styles. No reprogramming downtime.</td>
+    <td>Flexible; continuous production of variable product mix</td>
+    <td>High investment; medium production rate; high unit cost</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2 id="robot-vision">7. Robot Vision (Introduction)</h2>
+
+<p>Robot vision enables robots to interpret visual information from their environment to make decisions. Key tasks include:</p>
+<ul>
+  <li>Object detection and identification</li>
+  <li>Part inspection for quality control</li>
+  <li>Determining positions and orientation of objects</li>
+  <li>Safety monitoring and interlocks</li>
+</ul>
+
+<p><em>(Full details in Unit 5: Computer Vision &amp; Robot Programming)</em></p>
+
+<!-- ============================================================ -->
+<div class="unit-header" id="unit4">
+  <h1>UNIT 4: Robot Motion</h1>
+  <p>Translational &amp; Rotational Motion · Motion Conversion · Lagrangian Analysis · Control of Actuators · Sensory Devices</p>
+</div>
+
+<h2 id="translation-rotation">8. Translational &amp; Rotational Motion</h2>
+
+<h3>Translational Motion</h3>
+<ul>
+  <li>Also called <strong>linear motion</strong> — movement along a straight line</li>
+  <li>In a robot: represented by prismatic joints moving along X, Y, or Z axes</li>
+  <li>Described by linear displacement, linear velocity, and linear acceleration</li>
+  <li><strong>Example:</strong> A gripper moving straight down to pick up a part from a conveyor</li>
+</ul>
+
+<h3>Rotational Motion</h3>
+<ul>
+  <li>Movement about an axis — rotation or angular motion</li>
+  <li>In a robot: represented by revolute joints rotating about X, Y, or Z axes</li>
+  <li>Described by angular displacement (θ), angular velocity (ω), and angular acceleration (α)</li>
+  <li><strong>Example:</strong> A robot's waist turning (twisting joint T) to face a different direction</li>
+</ul>
+
+<h3>Combined Motion in Robots</h3>
+<ul>
+  <li>Most robot movements combine translation and rotation simultaneously</li>
+  <li>The helical joint is a perfect example: rotation + translation linked together (screw-like motion)</li>
+  <li>Cylindrical joints allow <em>independent</em> rotation and translation about the same axis</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Translational motion is like a train moving on tracks (straight line). Rotational motion is like a spinning wheel. A cylindrical joint is like an office chair: you can spin it (rotation) AND raise/lower it (translation) independently.
+</div>
+
+<h3>Motion Conversion</h3>
+<ul>
+  <li>Robots often need to convert rotational actuator output into linear motion (or vice versa)</li>
+  <li><strong>Methods:</strong>
+    <ul>
+      <li><strong>Rack and Pinion:</strong> Rotary gear (pinion) meshes with linear rack → converts rotation to translation</li>
+      <li><strong>Lead Screw / Ball Screw:</strong> Rotating screw → linear nut movement (like a car jack)</li>
+      <li><strong>Crank-Slider Mechanism:</strong> Converts rotation to reciprocating linear motion (like a piston in an engine)</li>
+      <li><strong>Hydraulic/Pneumatic Cylinders:</strong> Fluid pressure → linear push/pull force</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="example">
+  <strong>Example:</strong> A ball screw is commonly used in CNC machines and robot joints. When the motor (rotational) spins the screw, the nut on the screw moves linearly along the axis — converting rotation to precise linear motion with minimal backlash.
+</div>
+
+<hr>
+
+<h2 id="lagrangian">9. Lagrangian Analysis of Manipulators</h2>
+
+<h3>What is Lagrangian Mechanics?</h3>
+<p>The Lagrangian approach is a powerful method to derive the equations of motion for a mechanical system. Instead of analyzing all forces (Newton), it works with <strong>energy</strong>.</p>
+
+<div class="formula">
+L = T − V
+Where: L = Lagrangian, T = Total Kinetic Energy, V = Total Potential Energy
+</div>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Newton's method is like tracking every force on every part of a system (complicated for robots with many joints). Lagrangian is like using a GPS navigation system — you care only about your current state (speed, position) and energy, not every individual force. The equations still get you to the right answer, often more elegantly.
+</div>
+
+<h3>Why Lagrangian for Robots?</h3>
+<ul>
+  <li>Robot manipulators have multiple links and joints — tracking all forces/torques with Newton's method becomes extremely complex.</li>
+  <li>Lagrangian naturally handles constraints (joint limits, fixed links) through generalized coordinates.</li>
+  <li>Works with <strong>joint variables</strong> as generalized coordinates (θ₁, θ₂, … for revolute joints).</li>
+</ul>
+
+<h3>Lagrangian Equations of Motion</h3>
+<div class="formula">
+d/dt (∂L/∂q̇ᵢ) − ∂L/∂qᵢ = τᵢ
+
+Where: qᵢ = generalized coordinate (joint variable), q̇ᵢ = its velocity, τᵢ = generalized force/torque applied at joint i
+</div>
+
+<h3>Steps for Lagrangian Analysis of a Robot Arm</h3>
+<ol>
+  <li>Choose generalized coordinates (joint angles θ₁, θ₂, ... for each joint)</li>
+  <li>Calculate <strong>Kinetic Energy (T)</strong> of all links (translational + rotational components)</li>
+  <li>Calculate <strong>Potential Energy (V)</strong> of all links (due to gravity acting on center of mass)</li>
+  <li>Form the Lagrangian: L = T − V</li>
+  <li>Apply Lagrange's equations for each joint to get equations of motion</li>
+  <li>Solve for joint torques required to achieve desired motion</li>
+</ol>
+
+<div class="example">
+  <strong>Example — 2-Link Robot Arm:</strong> For a 2-link planar robot arm with joint angles θ₁ and θ₂:<br>
+  T = ½m₁(l₁θ̇₁)² + ½m₂[(l₁θ̇₁)² + (l₂θ̇₂)² + 2l₁l₂θ̇₁θ̇₂cos(θ₂)]<br>
+  V = m₁gl₁sin(θ₁) + m₂g[l₁sin(θ₁) + l₂sin(θ₁+θ₂)]<br>
+  Applying Lagrange's equation gives the torques needed at each joint.
+</div>
+
+<h3>Forward and Inverse Kinematics</h3>
+<table>
+  <tr><th>Type</th><th>Given</th><th>Find</th><th>Difficulty</th></tr>
+  <tr>
+    <td><strong>Forward Kinematics</strong></td>
+    <td>Joint angles (θ₁, θ₂, …)</td>
+    <td>Position &amp; orientation of end effector</td>
+    <td>Straightforward (one unique answer)</td>
+  </tr>
+  <tr>
+    <td><strong>Inverse Kinematics</strong></td>
+    <td>Desired end-effector position &amp; orientation</td>
+    <td>Required joint angles</td>
+    <td>Complex (multiple solutions may exist, or no solution)</td>
+  </tr>
+</table>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Forward Kinematics: "If I bend my elbow 90° and raise my shoulder 45°, where does my hand end up?" (Easy to calculate). Inverse Kinematics: "I want my hand at point (x, y, z). What angle should I set my elbow and shoulder?" (Complex — multiple body positions can reach the same point.)
+</div>
+
+<hr>
+
+<h2 id="actuators">10. Control of Actuators</h2>
+
+<h3>What are Actuators?</h3>
+<p>Actuators are the "muscles" of a robot — devices that convert energy into mechanical motion (force or torque) to move the joints.</p>
+
+<h3>Types of Actuators</h3>
+<table>
+  <tr><th>Type</th><th>Energy Source</th><th>Advantages</th><th>Disadvantages</th><th>Applications</th></tr>
+  <tr>
+    <td><strong>Electric (DC/AC Motors)</strong></td>
+    <td>Electrical</td>
+    <td>Clean, precise, easy to control; high repeatability</td>
+    <td>Limited force/torque at low speeds; needs gearbox</td>
+    <td>Most modern robots (SCARA, collaborative robots)</td>
+  </tr>
+  <tr>
+    <td><strong>Stepper Motors</strong></td>
+    <td>Electrical</td>
+    <td>Precise positioning without encoders; open-loop capable</td>
+    <td>Can lose steps under heavy load; not smooth at low speed</td>
+    <td>3D printers, CNC positioning</td>
+  </tr>
+  <tr>
+    <td><strong>Servo Motors</strong></td>
+    <td>Electrical</td>
+    <td>Closed-loop, very precise; high torque-to-size ratio</td>
+    <td>More expensive; needs encoder feedback</td>
+    <td>Industrial robot joints, CNC, aerospace</td>
+  </tr>
+  <tr>
+    <td><strong>Hydraulic</strong></td>
+    <td>Fluid pressure</td>
+    <td>Very high force/power density; good for heavy loads</td>
+    <td>Oil leaks, complex plumbing, slow response, noisy</td>
+    <td>Heavy industrial robots, excavators</td>
+  </tr>
+  <tr>
+    <td><strong>Pneumatic</strong></td>
+    <td>Compressed air</td>
+    <td>Clean, safe, fast response, low cost</td>
+    <td>Compressible air = less precise position control</td>
+    <td>Pick-and-place, packaging, end-effectors</td>
+  </tr>
+</table>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Electric motors = your arm muscles (precise and responsive). Hydraulic = a construction crane (slow but enormous force). Pneumatic = a spring (fast but hard to stop precisely at intermediate positions).
+</div>
+
+<h3>Actuator Control Methods</h3>
+<ul>
+  <li><strong>Open-loop (stepper motors):</strong> Send pulses to the motor, assume it moves correctly. No position feedback. Works until something slips.</li>
+  <li><strong>Closed-loop (servo motors):</strong> Encoder or resolver measures actual position → controller compares to desired → sends corrective signal. PID controller commonly used.</li>
+</ul>
+
+<h3>PID Controller (Proportional-Integral-Derivative)</h3>
+<ul>
+  <li><strong>P (Proportional):</strong> Correction proportional to current error. Faster response but may oscillate.</li>
+  <li><strong>I (Integral):</strong> Corrects accumulated past errors. Eliminates steady-state error.</li>
+  <li><strong>D (Derivative):</strong> Responds to rate of change of error. Damps oscillations (predictive).</li>
+</ul>
+
+<div class="formula">
+Control Output = Kp×e(t) + Ki×∫e(t)dt + Kd×de(t)/dt
+Where e(t) = error = desired position − actual position
+</div>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Driving a car to a target speed: P = Press gas based on how far you are from target speed. I = Press more if you've been slow for a long time. D = Ease off gas as you're quickly approaching target (to avoid overshooting).
+</div>
+
+<h3>Linear vs. Non-Linear Control of Manipulators</h3>
+<table>
+  <tr><th>Feature</th><th>Linear Control</th><th>Non-Linear Control</th></tr>
+  <tr><td>Assumes</td><td>System behaves linearly (small motions)</td><td>Full non-linear robot dynamics</td></tr>
+  <tr><td>Methods</td><td>PID, PD, state feedback</td><td>Computed torque, feedback linearization, adaptive control</td></tr>
+  <tr><td>Accuracy</td><td>Good for slow, small-range motion</td><td>Better for fast, large-range motion</td></tr>
+  <tr><td>Complexity</td><td>Simple to implement</td><td>Complex, computationally heavy</td></tr>
+  <tr><td>Real robots</td><td>Used with linearization approximations</td><td>Needed for high-performance robots</td></tr>
+</table>
+
+<div class="example">
+  <strong>Example — Computed Torque Control:</strong> This non-linear method computes the exact torques needed (using full dynamic model) to produce desired joint accelerations, then sends those torques to actuators. It accounts for gravity, Coriolis forces, and inertia of all links — something a simple PID ignores.
+</div>
+
+<hr>
+
+<h2 id="sensors">11. Robot Sensory Devices</h2>
+
+<h3>Two Basic Categories</h3>
+<ul>
+  <li><strong>Internal Sensors:</strong> Monitor internal state of robot (joint position, velocity, torque). Used for control loop feedback.
+    <ul><li>Examples: Encoders, resolvers, tachometers, potentiometers</li></ul>
+  </li>
+  <li><strong>External Sensors:</strong> Sense the robot's environment and objects. Coordinate robot with surroundings.
+    <ul><li>Examples: Vision cameras, proximity sensors, force/torque sensors, tactile arrays</li></ul>
+  </li>
+</ul>
+
+<h3>Types of External Sensors</h3>
+<table>
+  <tr><th>Sensor Type</th><th>Sub-types</th><th>Function / Example</th></tr>
+  <tr>
+    <td><strong>Tactile Sensors</strong></td>
+    <td>Touch sensors, force sensors, tactile array sensors</td>
+    <td>Detect contact, measure grasping force. Like fingertip sensitivity in a gripper.</td>
+  </tr>
+  <tr>
+    <td><strong>Proximity &amp; Range Sensors</strong></td>
+    <td>Optical (IR/laser), Acoustical (ultrasonic), Electromagnetic</td>
+    <td>Detect objects before touching; measure distance. Used for collision avoidance.</td>
+  </tr>
+  <tr>
+    <td><strong>Miscellaneous Sensors</strong></td>
+    <td>Thermocouples, pressure transducers, fluid flow, voice sensors</td>
+    <td>Sense temperature, pressure, flow rate for process monitoring.</td>
+  </tr>
+  <tr>
+    <td><strong>Machine Vision Systems</strong></td>
+    <td>Cameras, image processors</td>
+    <td>Object recognition, inspection, position estimation.</td>
+  </tr>
+</table>
+
+<h3>Uses of Sensors in Robotics</h3>
+<ul>
+  <li>Safety monitoring (stop if human enters workspace)</li>
+  <li>Interlocks in work cell control</li>
+  <li>Part inspection for quality control</li>
+  <li>Determining object position and orientation</li>
+</ul>
+
+<h3>Desirable Features of Sensors</h3>
+<ul>
+  <li>Accuracy, Operation range, Speed of response</li>
+  <li>Calibration, Reliability, Cost and ease of operation</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Internal sensors are like your proprioception (sensing your own limb position without looking). External sensors are like your five senses (seeing, touching, hearing what's around you). A robot without external sensors is like working blindfolded.
+</div>
+
+<!-- ============================================================ -->
+<div class="unit-header" id="unit5">
+  <h1>UNIT 5: Computer Vision &amp; Robot Programming</h1>
+  <p>Imaging Components · Object Recognition · Vision Training · Robot Programming · Design &amp; Specifications</p>
+</div>
+
+<h2 id="imaging">12. Computer Vision — Imaging Components</h2>
+
+<h3>What is Computer Vision?</h3>
+<p>Computer vision is the field that enables machines to interpret and understand visual information from the world (images, video) — essentially giving robots the ability to "see."</p>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Just as the human visual system has eyes (image capture), a retina (processing), and the brain (interpretation), a robot vision system has a camera (capture), an image processing unit (pre-processing), and a recognition algorithm (interpretation).
+</div>
+
+<h3>Components of an Imaging System</h3>
+
+<h4>1. Image Sensing / Capture</h4>
+<ul>
+  <li><strong>CCD Camera (Charge-Coupled Device):</strong> High-quality image capture, low noise. Used in industrial robots.</li>
+  <li><strong>CMOS Camera:</strong> Lower power, faster readout, cheaper. Used in smartphones, modern vision systems.</li>
+  <li><strong>Depth Cameras (RGB-D):</strong> Capture color + depth (distance). Example: Microsoft Kinect, Intel RealSense.</li>
+  <li><strong>Stereo Cameras:</strong> Two cameras at known separation → triangulate 3D position (like human binocular vision).</li>
+  <li><strong>Structured Light Sensors:</strong> Project a known pattern of light → analyze deformation to calculate depth.</li>
+</ul>
+
+<h4>2. Image Digitization (Analog to Digital Conversion)</h4>
+<ul>
+  <li>Converts analog light signals to digital pixel values</li>
+  <li><strong>Resolution:</strong> Number of pixels (e.g., 1920×1080)</li>
+  <li><strong>Bit depth:</strong> Levels of intensity per channel (8-bit = 256 levels; 16-bit = 65,536 levels)</li>
+  <li><strong>Frame rate:</strong> Images captured per second (fps)</li>
+</ul>
+
+<h4>3. Image Pre-Processing</h4>
+<ul>
+  <li><strong>Noise Reduction:</strong> Gaussian blur, median filter to remove camera noise</li>
+  <li><strong>Edge Detection:</strong> Sobel, Canny algorithms to find object boundaries</li>
+  <li><strong>Thresholding:</strong> Convert grayscale to binary (object vs. background)</li>
+  <li><strong>Morphological Operations:</strong> Erosion and dilation to clean binary images</li>
+  <li><strong>Histogram Equalization:</strong> Improve contrast for better feature extraction</li>
+</ul>
+
+<h4>4. Feature Extraction</h4>
+<ul>
+  <li>Extract meaningful information from pre-processed images</li>
+  <li><strong>Geometric features:</strong> Area, perimeter, centroid, bounding box</li>
+  <li><strong>Texture features:</strong> Patterns, roughness</li>
+  <li><strong>Keypoint features:</strong> SIFT (Scale-Invariant Feature Transform), ORB, SURF</li>
+  <li>These features are passed to the recognition system</li>
+</ul>
+
+<h4>5. Image Segmentation</h4>
+<ul>
+  <li>Partition image into meaningful regions (separating objects from background)</li>
+  <li><strong>Methods:</strong> Thresholding, region growing, watershed algorithm, semantic segmentation (deep learning)</li>
+</ul>
+
+<div class="example">
+  <strong>Example Pipeline:</strong> A robot on an assembly line needs to identify a defective part. Pipeline: Camera captures image → Gaussian blur (noise removal) → Canny edge detection → Thresholding → Segmentation → Feature extraction (area, aspect ratio) → Classifier (is defective? yes/no) → Robot either picks or discards part.
+</div>
+
+<hr>
+
+<h2 id="object-recognition">13. Object Recognition &amp; Categorization</h2>
+
+<h3>What is Object Recognition?</h3>
+<p>The process of identifying objects in images — determining what an object is, and often where it is and in what orientation.</p>
+
+<h3>Levels of Visual Understanding</h3>
+<ol>
+  <li><strong>Image Classification:</strong> "What is in this image?" — Single label for whole image (e.g., "car")</li>
+  <li><strong>Object Detection:</strong> "Where are the objects?" — Bounding boxes + labels (e.g., YOLO, SSD, Faster R-CNN)</li>
+  <li><strong>Semantic Segmentation:</strong> Pixel-level classification (every pixel labeled as "road", "car", "human", etc.)</li>
+  <li><strong>Instance Segmentation:</strong> Like semantic, but distinguishes between different instances of same class</li>
+  <li><strong>Pose Estimation:</strong> Identifies object orientation in 3D space — critical for robot grasping</li>
+</ol>
+
+<div class="analogy">
+  <strong>Analogy:</strong> Classification is like asking "Is there a dog in this room?" Detection is like asking "Where exactly is the dog sitting?" Segmentation is like drawing the dog's exact outline pixel by pixel.
+</div>
+
+<h3>Traditional vs. Deep Learning Approaches</h3>
+<table>
+  <tr><th>Feature</th><th>Traditional (Pre-2012)</th><th>Deep Learning (CNN-based)</th></tr>
+  <tr><td>Features</td><td>Hand-crafted (SIFT, HOG, SURF)</td><td>Learned automatically by network</td></tr>
+  <tr><td>Accuracy</td><td>Lower on complex tasks</td><td>State-of-the-art accuracy</td></tr>
+  <tr><td>Data needed</td><td>Works with less data</td><td>Needs large labeled datasets</td></tr>
+  <tr><td>Speed</td><td>Faster inference</td><td>Slower (GPU required)</td></tr>
+  <tr><td>Examples</td><td>Template matching, HOG+SVM</td><td>VGGNet, ResNet, YOLO, Mask R-CNN</td></tr>
+</table>
+
+<h3>Key Deep Learning Architectures for Vision</h3>
+<ul>
+  <li><strong>CNN (Convolutional Neural Network):</strong> Foundation of modern computer vision. Uses convolutional filters to extract spatial features hierarchically.</li>
+  <li><strong>YOLO (You Only Look Once):</strong> Real-time object detection — processes entire image in one pass. Used in industrial robots for fast detection.</li>
+  <li><strong>ResNet:</strong> Very deep network with skip connections — avoids vanishing gradient problem.</li>
+  <li><strong>Mask R-CNN:</strong> Object detection + instance segmentation. Gives pixel-level mask for each detected object.</li>
+</ul>
+
+<div class="example">
+  <strong>Example:</strong> A warehouse robot (Amazon Kiva) uses a camera and CNN to identify items on shelves. YOLO detects item positions in real time. The robot grasps items using pose estimation to determine exactly how to orient its gripper.
+</div>
+
+<h3>Need for Vision Training &amp; Adaptation</h3>
+
+<h4>Why Training is Necessary</h4>
+<ul>
+  <li>Real-world conditions vary: different lighting, viewpoints, occlusions, backgrounds</li>
+  <li>Objects look different when partially blocked, rotated, or under different illumination</li>
+  <li>A trained model must generalize beyond its training examples</li>
+</ul>
+
+<h4>Vision Training Process</h4>
+<ol>
+  <li><strong>Data Collection:</strong> Capture images of objects under various conditions</li>
+  <li><strong>Annotation/Labeling:</strong> Label objects in each image (bounding boxes, segmentation masks)</li>
+  <li><strong>Training:</strong> Feed labeled data into CNN; adjust weights via backpropagation</li>
+  <li><strong>Validation:</strong> Test on unseen images; measure accuracy metrics (precision, recall, mAP)</li>
+  <li><strong>Fine-tuning:</strong> Adjust hyperparameters, add more data, use data augmentation</li>
+  <li><strong>Deployment:</strong> Integrate trained model into robot control system</li>
+</ol>
+
+<h4>Adaptation Techniques</h4>
+<ul>
+  <li><strong>Transfer Learning:</strong> Use a pre-trained model (on ImageNet) and fine-tune on specific robot task. Saves huge training time.</li>
+  <li><strong>Data Augmentation:</strong> Artificially expand training data — rotate, flip, crop, add noise to images. Improves robustness.</li>
+  <li><strong>Online Learning / Adaptation:</strong> Robot continues learning from new observations during operation. Adapts to changing environments.</li>
+  <li><strong>Domain Adaptation:</strong> Train in simulation (cheap), adapt to real world (domain gap reduction).</li>
+</ul>
+
+<div class="analogy">
+  <strong>Analogy for Transfer Learning:</strong> A medical student (pre-trained on general biology) specializes in cardiology (fine-tuning on specific domain) rather than starting medical education from scratch. Similarly, a robot vision model pre-trained on millions of images needs only a few thousand labeled robot-specific images to become an expert at the task.
+</div>
+
+<hr>
+
+<h2 id="programming">14. Robot Programming</h2>
+
+<h3>Levels of Robot Programming</h3>
+<ol>
+  <li><strong>Manual Programming (Teach Pendant):</strong> Operator physically guides robot to each point; controller records joint positions. Played back during production.
+    <ul><li>Simple, no coding needed; but tedious and requires robot downtime</li></ul>
+  </li>
+  <li><strong>Textual/Off-line Programming:</strong> Write programs in a robot programming language (VAL, RAPID, KRL, etc.) on a computer, then upload.
+    <ul><li>Robot doesn't need to be stopped; program can be tested in simulation first</li></ul>
+  </li>
+  <li><strong>Task-Level Programming:</strong> Specify what to do (e.g., "assemble part A into slot B"), not how — robot figures out the motion. Requires AI/planning.
+    <ul><li>Highest level; still largely in research stage</li></ul>
+  </li>
+</ol>
+
+<h3>Robot Programming Languages</h3>
+<table>
+  <tr><th>Language</th><th>Used By</th><th>Features</th></tr>
+  <tr><td>VAL / VAL-II</td><td>PUMA (early robots)</td><td>First structured robot language; point-to-point, loop, conditionals</td></tr>
+  <tr><td>RAPID</td><td>ABB robots</td><td>Modern, structured; supports procedures, functions, I/O</td></tr>
+  <tr><td>KRL (KUKA Robot Language)</td><td>KUKA robots</td><td>Pascal-like syntax; supports complex path programming</td></tr>
+  <tr><td>KAREL</td><td>FANUC robots</td><td>Pascal-based; integrates with vision systems</td></tr>
+  <tr><td>URScript</td><td>Universal Robots</td><td>Python-like; easy to learn for collaborative robots</td></tr>
+</table>
+
+<h3>Key Programming Concepts</h3>
+<ul>
+  <li><strong>Waypoints/Points:</strong> Stored Cartesian or joint positions the robot must visit</li>
+  <li><strong>Motion Instructions:</strong> MoveJ (joint interpolation), MoveL (linear motion), MoveC (circular arc)</li>
+  <li><strong>I/O Control:</strong> Set digital outputs (activate gripper, signal conveyor)</li>
+  <li><strong>Conditional Logic:</strong> IF sensor = TRUE THEN pick part ELSE reject</li>
+  <li><strong>Loops and Subroutines:</strong> Repeat operations, organize code into modular routines</li>
+</ul>
+
+<h3>Simulation &amp; Offline Programming Tools</h3>
+<ul>
+  <li><strong>ROS (Robot Operating System):</strong> Open-source framework for robot software development. Not an OS — middleware that provides communication between robot components.</li>
+  <li><strong>Gazebo:</strong> Physics simulation environment for ROS robots</li>
+  <li><strong>RobotStudio (ABB):</strong> Official offline programming and simulation tool</li>
+  <li><strong>KUKA.Sim:</strong> KUKA's offline simulation environment</li>
+</ul>
+
+<div class="example">
+  <strong>Example — Teach Pendant vs. Offline Programming:</strong><br>
+  Teach pendant: Like teaching a parrot by demonstration — show it the path, it repeats it. Good for simple tasks in a fixed environment.<br>
+  Offline programming: Like giving someone written directions before they arrive at a new city. More powerful, but requires accurate models of the robot and environment.
+</div>
+
+<hr>
+
+<h2 id="design">15. Robot Design &amp; Process Specifications</h2>
+
+<h3>Industrial Robot — Key Characteristics</h3>
+<p>An industrial robot must possess <strong>anthropomorphic characteristics</strong> — human-like physical structure or ability to respond to sensory signals like humans. Characteristics include:</p>
+<ul>
+  <li>Mechanical arms for various industrial tasks</li>
+  <li>Sensory perceptive devices (sensors) to interact with machines</li>
+  <li>Ability to make simple decisions</li>
+  <li>Multiple moving axes (joints) controlled by a dedicated digital computer</li>
+</ul>
+
+<h3>Work Volume / Work Envelope</h3>
+<p>The 3D space in which a robot can move and operate its wrist end. Also called work space or work envelope.</p>
+<p><strong>Factors affecting work volume:</strong></p>
+<ul>
+  <li>Robot anatomy (configuration type)</li>
+  <li>Maximum movement value for each joint</li>
+  <li>Size of robot components (arm, wrist, body)</li>
+</ul>
+<table>
+  <tr><th>Configuration</th><th>Work Volume Shape</th></tr>
+  <tr><td>Polar (RRP)</td><td>Partial sphere</td></tr>
+  <tr><td>Cylindrical (RPP)</td><td>Cylinder</td></tr>
+  <tr><td>Cartesian (PPP)</td><td>Cuboid (box)</td></tr>
+  <tr><td>Articulated (RRR)</td><td>Sphere (largest and most dexterous)</td></tr>
+</table>
+
+<h3>Robot Design Process (Steps)</h3>
+<ol>
+  <li><strong>Define Task Requirements:</strong> What must the robot do? (payload, speed, precision, DOF needed, environment)</li>
+  <li><strong>Select Configuration:</strong> Choose arm type (Cartesian, cylindrical, articulated etc.) based on task and workspace</li>
+  <li><strong>Select Actuators:</strong> Electric, hydraulic, or pneumatic based on force, speed, precision needs</li>
+  <li><strong>Design Mechanical Structure:</strong> Links, joints, materials (weight vs. stiffness trade-off)</li>
+  <li><strong>Select Sensors:</strong> Internal (encoders) and external (vision, force) sensors</li>
+  <li><strong>Design Control System:</strong> Open/closed loop, type of controller (PID, model-based)</li>
+  <li><strong>Program the Robot:</strong> Write task programs, configure I/O, test in simulation</li>
+  <li><strong>Integration &amp; Testing:</strong> Deploy in work cell, validate precision, speed, reliability</li>
+</ol>
+
+<h3>Process Specifications for Robots</h3>
+<table>
+  <tr><th>Specification</th><th>Definition</th><th>Typical Values</th></tr>
+  <tr><td><strong>Payload</strong></td><td>Max weight robot can carry (excluding its own arm weight)</td><td>0.5 kg (cobot) to 1000+ kg (heavy industrial)</td></tr>
+  <tr><td><strong>Reach</strong></td><td>Maximum distance from robot base to end effector</td><td>0.5 m to 4+ m</td></tr>
+  <tr><td><strong>Repeatability</strong></td><td>How consistently robot returns to a taught point</td><td>±0.01 mm to ±1 mm</td></tr>
+  <tr><td><strong>Speed</strong></td><td>Maximum tool center point (TCP) speed</td><td>0.5 m/s to 10+ m/s</td></tr>
+  <tr><td><strong>DOF</strong></td><td>Number of independent motion axes</td><td>4 to 7 (most industrial = 6)</td></tr>
+  <tr><td><strong>Cycle Time</strong></td><td>Time for one complete operation cycle</td><td>Varies by application</td></tr>
+  <tr><td><strong>IP Rating</strong></td><td>Protection against dust and water</td><td>IP54, IP67 for washdown environments</td></tr>
+</table>
+
+<h3>Typical Robot Applications and Matching Design</h3>
+<table>
+  <tr><th>Application</th><th>Best Configuration</th><th>Key Requirements</th></tr>
+  <tr><td>Spot welding</td><td>Articulated (RRR)</td><td>High flexibility, large work volume</td></tr>
+  <tr><td>Spray painting</td><td>Articulated (RRR) or polar</td><td>Continuous path control, velocity control</td></tr>
+  <tr><td>Machine loading</td><td>Cylindrical (RPP)</td><td>Good stiffness, access to narrow spaces</td></tr>
+  <tr><td>Heavy part transfer</td><td>Cartesian (PPP)</td><td>High payload, simple programming</td></tr>
+  <tr><td>Assembly (small parts)</td><td>SCARA</td><td>Fast, rigid in vertical direction</td></tr>
+  <tr><td>Arc welding, gluing</td><td>Articulated + CP control</td><td>Precise path and velocity control</td></tr>
+  <tr><td>Palletizing</td><td>Articulated (4-5 DOF)</td><td>High payload, large reach, PTP control</td></tr>
+</table>
+
+<hr>
+
+<h2>Quick Revision — Common Exam Questions</h2>
+
+<div class="keypoint">
+  <strong>Q: Differentiate between holonomic and non-holonomic constraints with examples.</strong><br>
+  Holonomic = expressible algebraically (fixed joints, hinges). Non-holonomic = expressed in velocities/accelerations (rolling without slipping, car wheel direction). Holonomic constraints directly reduce DOF; non-holonomic restrict motion path without reducing configuration space DOF.
+</div>
+
+<div class="keypoint">
+  <strong>Q: Explain the difference between accuracy and repeatability in robots.</strong><br>
+  Accuracy = how close the robot gets to a programmed target (half of resolution interval; affected by mechanical inaccuracies — hard to control, rarely specified by manufacturers). Repeatability = how consistently the robot returns to a previously visited point (repeatability error is random, generally better than accuracy for same robot; larger robots have less precise repeatability).
+</div>
+
+<div class="keypoint">
+  <strong>Q: What is the Lagrangian method and why is it used for robot analysis?</strong><br>
+  The Lagrangian method derives equations of motion using energy (kinetic − potential) rather than forces. For robots with many links, tracking all forces via Newton's method is complex. Lagrangian elegantly handles this using joint variables as generalized coordinates, yielding the torques needed at each joint to produce desired motion.
+</div>
+
+<div class="keypoint">
+  <strong>Q: Compare fixed, programmable, and flexible automation.</strong><br>
+  Fixed (hard): Special-purpose, fixed sequence, low cost/unit, high output, inflexible. Programmable (soft): Program-controlled, changeable sequence, flexible for product variations, batch production suitable. Flexible: Extension of programmable — no downtime for changeover, continuous mix of products, highest investment.
+</div>
+
+<div class="keypoint">
+  <strong>Q: What is transfer learning and why is it important in robot vision?</strong><br>
+  Transfer learning reuses a model pre-trained on large datasets (e.g., ImageNet) and fine-tunes it on a smaller, task-specific dataset. Saves massive computation time and data. Critical in robotics where labeled training data is expensive to collect. A robot vision system can leverage millions of pre-learned visual features (edges, shapes, textures) and specialize with just hundreds of robot-specific images.
+</div>
+
+<div class="keypoint">
+  <strong>Q: What are the advantages and disadvantages of the jointed arm (RRR) configuration?</strong><br>
+  Advantages: Maximum flexibility, huge spherical work volume, quick operation, most dexterous. Disadvantages: Very expensive, difficult operating procedures, many mechanical components, complex kinematics calculations. Applications: Arc welding, spray coating. Example robot: SCARA.
+</div>
+
+<hr>
+
+<h2>Advantages &amp; Disadvantages of Robotic Systems</h2>
+<div class="comparison">
+  <div class="comp-box comp-closed">
+    <h4>Advantages</h4>
+    <ul>
+      <li>Safety in hazardous environments</li>
+      <li>Speed and consistency</li>
+      <li>High accuracy and repeatability</li>
+      <li>Multi-skill capability</li>
+      <li>Increased productivity and efficiency</li>
+      <li>Reduces employee workload</li>
+      <li>Creates new industries and jobs</li>
+      <li>Technology spillover to other fields</li>
+    </ul>
+  </div>
+  <div class="comp-box comp-open">
+    <h4>Disadvantages</h4>
+    <ul>
+      <li>Less dexterous than humans</li>
+      <li>Increased military use concerns</li>
+      <li>High economic cost to companies</li>
+      <li>Needs skilled operators and programmers</li>
+      <li>Lacks human intelligence and judgment</li>
+      <li>Job loss and unemployment</li>
+      <li>AI capability concerns</li>
+    </ul>
+  </div>
+</div>
+
+<div class="footer">
+  <p>MCA Robotics Exam Notes · Units 3, 4 &amp; 5 · Compiled for written examination preparation</p>
+  <p>Topics: Classification · Kinematics · Arm/Wrist Control · Trajectory · Lagrangian Analysis · Actuators · Sensors · Computer Vision · Object Recognition · Robot Programming · Design Specifications</p>
+</div>
+
+</body>
+</html>
